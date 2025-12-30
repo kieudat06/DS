@@ -49,9 +49,15 @@ evaluate_f1_components(3,3,3)
 
 ## 2. Viết hàm tính giá trị cho các hàm số kích hoạt.
 **Sigmoid Function**
-- Là một trong những hàm kích hoạt cơ bản nhất trong machine learning và neural networks.
+- Hình dạng của nó giống như chữ "S". Sigmoid chuyển đổi mọi giá trị đầu vào thành một giá trị đầu ra nằm trong khoảng 0 và 1.
 - Ưu Điểm:
     + Dễ hiểu và triển khai: trong mạng neuron.
     + Đầu ra nằm trong khoảng [0,1].
 - Nhược điểm 
     + Vanishing gradient problem:  Khi đầu vào có giá trị lớn hoặc nhỏ, đạo hàm của Sigmoid tiệm cận đến 0, dẫn đến vấn đề vanishing gradient, làm chậm quá trình học của mạng.
+    + Tâm đối xứng không tại 0: gây ra vấn đề trong việc điều chỉnh trọng số trong quá trình học.
+    $$
+    \text{sigmoid}(x) = \frac{1}{1 + e^{-x}}
+    $$
+**ReLu Function**
+- Rectified Linear Unit:  nếu đầu vào là số âm, hàm sẽ trả về giá trị 0, còn nếu đầu vào là số dương, hàm sẽ trả về chính giá trị đó.
