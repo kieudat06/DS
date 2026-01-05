@@ -50,14 +50,28 @@ evaluate_f1_components(3,3,3)
 ## 2. Viết hàm tính giá trị cho các hàm số kích hoạt.
 **Sigmoid Function**
 - Hình dạng của nó giống như chữ "S". Sigmoid chuyển đổi mọi giá trị đầu vào thành một giá trị đầu ra nằm trong khoảng 0 và 1.
-- Ưu Điểm:
-    + Dễ hiểu và triển khai: trong mạng neuron.
-    + Đầu ra nằm trong khoảng [0,1].
-- Nhược điểm 
-    + Vanishing gradient problem:  Khi đầu vào có giá trị lớn hoặc nhỏ, đạo hàm của Sigmoid tiệm cận đến 0, dẫn đến vấn đề vanishing gradient, làm chậm quá trình học của mạng.
-    + Tâm đối xứng không tại 0: gây ra vấn đề trong việc điều chỉnh trọng số trong quá trình học.
-    $$
-    \text{sigmoid}(x) = \frac{1}{1 + e^{-x}}
-    $$
+```python
+def sigmoid(x):
+    return 1 / (1 + (math.e)**(-x))
+```
+
 **ReLu Function**
 - Rectified Linear Unit:  nếu đầu vào là số âm, hàm sẽ trả về giá trị 0, còn nếu đầu vào là số dương, hàm sẽ trả về chính giá trị đó.
+```python
+def reLU(x):
+    if (x >=0):
+        return x
+    return 0
+```
+
+**ELU Function**
+- Exponential Linear Unit: giảm thiểu vấn đề vanishing
+gradient ở các giá trị âm, đồng thời vẫn duy trì tính phi tuyến cần
+thiết cho quá trình học sâu.
+```python
+def ELU(x):
+    a = 0.01
+    if x <= 0:
+        return a*((math.e)**x - 1)
+    return x
+```

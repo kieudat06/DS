@@ -1,3 +1,4 @@
+import math
 def evaluate_f1_components(tp, fp, fn):
     if not isinstance(tp, int):
         print('tp must be int') 
@@ -30,5 +31,54 @@ def evaluate_f1_components(tp, fp, fn):
     return precision, recall, f1_score 
 
        
-evaluate_f1_components(3,3,3)
+# evaluate_f1_components(3,3,3)
 # evaluate_f1_components(2,3,4)
+
+def sigmoid(x):
+    return 1 / (1 + (math.e)**(-x))
+
+def reLU(x):
+    if (x >=0):
+        return x
+    return 0
+
+def ELU(x):
+    a = 0.01
+    if x <= 0:
+        return a*((math.e)**x - 1)
+    return x
+
+def is_number(x):
+    try:
+        x = float(x)
+        return True
+    except ValueError:
+        return False
+    return True
+    
+def activation_function():
+    x = input('input x: ')
+    if not is_number(x):
+        print("x must be a number")
+        return
+    x = float(x)
+    act = input("Input activation Function (sigmoid|relu|elu):")
+    if (act not in {"sigmoid","relu","elu"}):
+        print(act, "is not supportted") 
+        return
+        
+    if (act == 'sigmoid'):
+        print("{}: f({}) = {}".format(act,x,sigmoid(x)))
+    elif (act == 'relu'):
+        print("{}: f({}) = {}".format(act,x,reLU(x)))
+    else:
+        print("{}: f({}) = {}".format(act,x,ELU(x)))
+    
+    
+    
+# print(reLU(-3))
+# print(sigmoid(-3))
+# print(ELU(-3))
+
+activation_function()
+    
